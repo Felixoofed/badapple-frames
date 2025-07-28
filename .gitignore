@@ -202,6 +202,5 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Video frames
-frames/
+# notes
 notes.txt
