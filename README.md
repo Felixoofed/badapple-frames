@@ -2,7 +2,8 @@
 I'm hopping on the niche CS student meme train. This code is hopelessly unoptimized, but I might update this in the future.
 
 ## Videos
-![Bad Apple But Gambling](https://youtu.be/-ba5q5Pcojs)
+### Bad Apple But Gambling
+[![Bad Apple But Gambling](https://img.youtube.com/vi/-ba5q5Pcojs/0.jpg)](https://youtu.be/-ba5q5Pcojs)
 
 ## TODO
 - Optimization, currently running everything single threaded on the CPU.
