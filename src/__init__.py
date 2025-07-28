@@ -1,6 +1,6 @@
 import logging
-from .Effects._BaseEffect import BaseImageProcessor
-from .Effects.diceify import Diceify
+from .imgProcessing.Effects._BaseEffect import BaseImageProcessor
+from .imgProcessing.Effects.diceify import Diceify
 # from .Effects.dither    import Dither  # you’ll need to refactor `dither.py` into a function
 
 

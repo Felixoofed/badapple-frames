@@ -1,0 +1,66 @@
+{
+  "name": "python-template",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "postCreateCommand": "pip install -r requirements.txt",
+  "customizations": {
+    "vscode": {
+      "editor.tabSize": 2,
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnPaste": true,
+      "editor.formatOnSave": true,
+      "editor.useTabStops": false,
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
+        "aaron-bond.better-comments",
+        "chrisdias.promptboost",
+        "esbenp.prettier-vscode",
+        "exodiusstudios.comment-anchors",
+        "github.codespaces",
+        "github.copilot",
+        "github.copilot-chat",
+        "github.github-vscode-theme",
+        "github.vscode-pull-request-github",
+        "ascen.cave",
+        //"atlassian.atlascode",
+        "dbaeumer.vscode-eslint",
+        "github.remotehub",
+        "mechatroner.rainbow-csv",
+        "ms-python.debugpy",
+        "ms-python.vscode-python-envs",
+        "ms-toolsai.jupyter-keymap",
+        "ms-toolsai.jupyter-renderers",
+        "ms-toolsai.vscode-jupyter-cell-tags",
+        "ms-toolsai.vscode-jupyter-slideshow",
+        "ms-vscode-remote.remote-containers",
+        "ms-vscode-remote.remote-ssh",
+        "ms-vscode-remote.remote-ssh-edit",
+        "ms-vscode-remote.remote-wsl",
+        "ms-vscode-remote.vscode-remote-extensionpack",
+        "ms-vscode.azure-repos",
+        "ms-vscode.remote-explorer",
+        "ms-vscode.remote-repositories",
+        "ms-vscode.remote-server",
+        "rangav.vscode-thunder-client",
+        "redhat.vscode-yaml",
+        "zainchen.json"
+      ],
+      "workbench.editor.scrollToSwitchTabs": true,
+      "workbench.editor.enablePreview": false,
+      "workbench.colorTheme": "Monokai Dimmed",
+      "git.autofetch": true,
+      "python.analysis.typeCheckingMode": "standard",
+      "github.copilot.nextEditSuggestions.enabled": true,
+      "telemetry.tekemetryLevel": "off",
+      "update.channel": "stable",
+      "update.mode": "start",
+      "chat.promptFiles": [
+        {
+          "name": "Default",
+          "path": "/.github/prompts/python.prompt.md"
+        }
+      ]
+    }
+  }
+}
