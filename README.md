@@ -1,10 +1,9 @@
 # badapple-frames
-## 2025 update
-genuinely shocked how i somehow managed to manifest 38 stars passively for about 4 years
-
-if you're reading this from the future, hello! i'm not using this account anymore and i'm
-not willing to share my new one either . if you're using this don't credit me this repository
-is so stupid lol
+## 2026 update
+!!! Hello just remembered this repository exists I cannot believe it somehow racked up 96 stars !!!<br>
+This repository is a bit old and stupid so i'm not sure *how* it even got to this point but 
+I just wanna say thx to people who have actually used this for their projects and I wanna thank r/badapple for using this resource a bunch
+<br>Keep on creating!!
 
 ---
 
