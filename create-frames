@@ -1,6 +1,66 @@
-# create a folder called "frames"
-# open command prompt on the folder
-# get the badapple video file
-# then run the ffmpeg script
+import cv2
+import numpy as np
+from tqdm import tqdm
+ 
+# 설정
+BADAPPLE_PATH = "badapple.mp4"
+CANDIDATE_PATH = "Bad Apple!! Full Extended Version Edited Perspective. Individual Clips_ Snippets._1080p60.mp4"
+OUTPUT_PATH = "result.mp4"
+COMPARE_SIZE = (160, 90)      # 비교용 작은 해상도
+OUTPUT_SIZE = (640, 360)      # 결과 영상 해상도
+ 
+# 1. 후보 영상의 모든 프레임을 미리 로드 (메모리에 올림)
+print("후보 프레임 로딩 중...")
+cap_cand = cv2.VideoCapture(CANDIDATE_PATH)
+candidates = []
+cand_frames = []  # 나중에 쓸 원본 프레임 저장용
 
-ffmpeg -i badapple.mp4 -r 30 output_%04d.png
+while True:
+    ret, frame = cap_cand.read()
+    if not ret:
+        break
+    # 비교용 작은 흑백 이미지
+    small = cv2.resize(frame, COMPARE_SIZE)
+    gray = cv2.cvtColor(small, cv2.COLOR_BGR2GRAY)
+    gray = cv2.equalizeHist(gray).astype(np.float32) / 255.0
+    candidates.append(gray)
+    # 결과용으로 쓸 프레임 (리사이즈)
+    cand_frames.append(cv2.resize(frame, OUTPUT_SIZE))
+ 
+cap_cand.release()
+candidates = np.array(candidates)
+print(f"후보 프레임 수: {len(candidates)}")
+ 
+# 2. Bad Apple 영상을 읽으면서 매칭
+cap_ba = cv2.VideoCapture(BADAPPLE_PATH)
+fps = cap_ba.get(cv2.CAP_PROP_FPS)
+width, height = OUTPUT_SIZE
+ 
+fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+out = cv2.VideoWriter(OUTPUT_PATH, fourcc, fps, (width, height))
+ 
+total_frames = int(cap_ba.get(cv2.CAP_PROP_FRAME_COUNT))
+pbar = tqdm(total=total_frames)
+ 
+while True:
+    ret, frame = cap_ba.read()
+    if not ret:
+        break
+ 
+    # 비교용 전처리
+    small = cv2.resize(frame, COMPARE_SIZE)
+    gray = cv2.cvtColor(small, cv2.COLOR_BGR2GRAY)
+    gray = cv2.equalizeHist(gray).astype(np.float32) / 255.0
+ 
+    # MSE로 가장 비슷한 프레임 찾기
+    diff = candidates - gray
+    mse = np.mean(diff ** 2, axis=(1, 2))
+    best_idx = np.argmin(mse)
+ 
+    # 결과 영상에 쓰기
+    out.write(cand_frames[best_idx])
+    pbar.update(1)
+ 
+pbar.close()
+cap_ba.release()
+out.release()
